@@ -115,17 +115,17 @@ func processInput(input chan<- int) {
 	defer close(input)
 	scanner := bufio.NewScanner(os.Stdin)
 
-	fmt.Println("Введите целые числа (для завершения введите 'exit'):")
+	fmt.Println("Введите целые числа: 1, 3, 5...  (для завершения введите 'exit'):")
 	for scanner.Scan() {
 		text := strings.TrimSpace(scanner.Text())
 		if text == "exit" {
-			log.Println("Получена команда завершения")
+			log.Println("Получена команда завершения.")
 			return
 		}
 
 		num, err := strconv.Atoi(text)
 		if err != nil {
-			fmt.Println("Ошибка: введите корректное целое число")
+			fmt.Println("Ошибка: введите корректное целое число.")
 			continue
 		}
 		input <- num
